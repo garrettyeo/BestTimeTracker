@@ -1,11 +1,13 @@
-# My Personal Project
+# My Personal Project: BestTimeTracker
 
-## A subtitle
+## Best Time Tracker for Swimming Application
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+This application will be similar to the different online timing and ranking services found on the *FINA*, *Swimming 
+Canada*, and *USA Swimming* websites. This application will allow people to record their times for different swimming 
+events, along with other necessary information like name, age, and swimmer group. After recording their times, people 
+will be able to determine their own personal best times, as well as compare times across similar age and swimmer groups 
+for each event.
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+This application is designed for use by competitive swimmers. As a former competitive swimmer, myself, I used to 
+frequently document sets from my training sessions, and the times I swam both in practice and during swim meets to 
+track my performance relative to my goal times. This application will make it easier to record times for personal use. 
