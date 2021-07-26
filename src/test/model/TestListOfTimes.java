@@ -8,17 +8,17 @@ public class TestListOfTimes {
     private ListOfTimes testListOfTimes;
     private Time t1 = new Time("Garrett Yeo", 'M', 21, "Lower Mainland Invitational",
             "100 Breaststroke", "1:05:25");
-    private Time t2 = new Time ("Daiya Seto", 'M', 25, "World Championships",
+    private Time t2 = new Time("Daiya Seto", 'M', 25, "World Championships",
             "400 IM", "4:06:23");
-    private Time t3 = new Time ("Daiya Seto", 'M', 26, "Tokyo Olympics",
+    private Time t3 = new Time("Daiya Seto", 'M', 26, "Tokyo Olympics",
             "400 IM", "4:10:23");
-    private Time t4 = new Time ("Daiya Seto", 'M', 26, "FINA A",
+    private Time t4 = new Time("Daiya Seto", 'M', 26, "FINA A",
             "400 IM", "4:10:53");
-    private Time t5 = new Time ("Katie Ledecky", 'F', 26, "Tokyo Olympics",
+    private Time t5 = new Time("Katie Ledecky", 'F', 26, "Tokyo Olympics",
             "400 Freestyle", "4:00:00");
-    private Time t6 = new Time ("Daiya Seto", 'M', 26, "Tokyo Olympics",
+    private Time t6 = new Time("Daiya Seto", 'M', 26, "Tokyo Olympics",
             "200 Butterfly", "1:52:00");
-    private Time t7 = new Time ("Daiya Seto", 'M', 25, "Tokyo Olympics",
+    private Time t7 = new Time("Daiya Seto", 'M', 25, "Tokyo Olympics",
             "200 IM", "1:59:14");
 
 
@@ -73,6 +73,11 @@ public class TestListOfTimes {
     }
 
     @Test
+    public void testListOfTimesSize() {
+        assertEquals(3, testListOfTimes.getSize());
+    }
+
+    @Test
     public void testGetAllSwimmerTimes() {
         testListOfTimes.addTime(t4);
         testListOfTimes.addTime(t5);
@@ -89,14 +94,7 @@ public class TestListOfTimes {
 
     @Test
     public void testRemoveTime() {
-       assertTrue(testListOfTimes.removeTime(t2));
-       assertFalse(testListOfTimes.removeTime(t2));
-       assertFalse(testListOfTimes.removeTime(t4));
+       testListOfTimes.removeTime(t2);
        assertEquals(t3, testListOfTimes.getTime(1));
-    }
-
-    @Test
-    public void testContainsTime() {
-        assertTrue(testListOfTimes.containsTime(t3));
     }
 }

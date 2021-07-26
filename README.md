@@ -14,7 +14,6 @@ track my performance relative to my goal times. This application will make it ea
 ## User Stories:
 
 - As a user, I want to be able to create a new time and add it to my list of times
-- As a user, I want to be able to view a list of times based on a swimmer's name
-- As a user, I want to be able to select a time and view the best time based on a swimmer's name
+- As a user, I want to be able to view a list of all times
+- As a user, I want to be able to search a name and view all the best times under a swimmer's name
 - As a user, I want to be able to delete a time from my list of times
-- As a user, I want to be able to view a list of times for an event from fastest to slowest // can implement???
