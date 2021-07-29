@@ -1,6 +1,6 @@
 package ui;
 
-import model.ListOfTimes;
+import model.TimesDatabase;
 import model.Time;
 
 import java.util.Scanner;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 // TellerApp example repo
 public class BestTimeTrackerApp {
     private Scanner input;
-    private ListOfTimes timeList;
+    private TimesDatabase timeList;
     private Time swimmerGroup;
 
     //initialized Time values to be used for console demo
@@ -69,7 +69,7 @@ public class BestTimeTrackerApp {
     // MODIFIES: this
     // EFFECTS: initializes Times
     private void init() {
-        timeList = new ListOfTimes();
+        timeList = new TimesDatabase();
         timeList.addTime(t1);
         timeList.addTime(t2);
         timeList.addTime(t3);
@@ -87,6 +87,7 @@ public class BestTimeTrackerApp {
         System.out.println("\t5 -> Quit");
     }
 
+    //FIX inputLine and spaces input bug
     // MODIFIES: this
     // EFFECTS: adds a time to the list
     private void doAddTime() {
@@ -109,6 +110,7 @@ public class BestTimeTrackerApp {
         System.out.println("Added!");
     }
 
+    // !!!! FIX INPUT AND INTERFACE
     // MODIFIES: this
     // EFFECTS: removes a time from the list
     private void doRemoveTime() {
@@ -131,6 +133,7 @@ public class BestTimeTrackerApp {
         System.out.println("Removed!");
     }
 
+    // ADD ANOTHER MENU THAT -shows all of swimmer's best times,    - shows all of swimmer's times
     // MODIFIES: this
     // EFFECTS: given a name, displays all best times under that name
     private void doLookupSwimmer() {
@@ -138,7 +141,7 @@ public class BestTimeTrackerApp {
         String name = input.next();
         System.out.println("\n\t" + name + "'s best times:");
 
-        ListOfTimes swimmerBestTimes = timeList.getSwimmerBestTime(name);
+        TimesDatabase swimmerBestTimes = timeList.getSwimmerBestTime(name);
         int size = swimmerBestTimes.getSize();
 
         for (int i = 0; i < size; i++) {
@@ -148,6 +151,7 @@ public class BestTimeTrackerApp {
         }
     }
 
+    //!!!! fix display format concerning spacing
     //MODIFIES: this
     // EFFECTS: displays all times in list
     private void doDisplayAll() {

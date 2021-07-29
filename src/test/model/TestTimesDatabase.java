@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestListOfTimes {
-    private ListOfTimes testListOfTimes;
+public class TestTimesDatabase {
+    private TimesDatabase testListOfTimes;
     private Time t1 = new Time("Garrett Yeo", 'M', 21, "Lower Mainland Invitational",
             "100 Breaststroke", "1:05:25");
     private Time t2 = new Time("Daiya Seto", 'M', 25, "World Championships",
@@ -24,7 +24,7 @@ public class TestListOfTimes {
 
     @BeforeEach
     public void setup() {
-        testListOfTimes = new ListOfTimes();
+        testListOfTimes = new TimesDatabase();
         testListOfTimes.addTime(t1);
         testListOfTimes.addTime(t2);
         testListOfTimes.addTime(t3);
@@ -64,11 +64,11 @@ public class TestListOfTimes {
         testListOfTimes.addTime(t5);
         testListOfTimes.addTime(t6);
 
-        ListOfTimes testList1 = testListOfTimes.getSwimmerBestTime("Daiya Seto");
+        TimesDatabase testList1 = testListOfTimes.getSwimmerBestTime("Daiya Seto");
         assertEquals(t2, testList1.getTime(0));
         assertEquals(t6, testList1.getTime(1));
 
-        ListOfTimes testList2 = testListOfTimes.getSwimmerBestTime("Garrett Yeo");
+        TimesDatabase testList2 = testListOfTimes.getSwimmerBestTime("Garrett Yeo");
         assertEquals(t1, testList2.getTime(0));
     }
 
@@ -83,12 +83,12 @@ public class TestListOfTimes {
         testListOfTimes.addTime(t5);
         testListOfTimes.addTime(t6);
 
-        ListOfTimes testList1 = testListOfTimes.getAllSwimmerTimes("Daiya Seto");
+        TimesDatabase testList1 = testListOfTimes.getAllSwimmerTimes("Daiya Seto");
         assertEquals(t2, testList1.getTime(0));
         assertEquals(t3, testList1.getTime(1));
         assertEquals(t6, testList1.getTime(3));
 
-        ListOfTimes testList2 = testListOfTimes.getAllSwimmerTimes("Katie Ledecky");
+        TimesDatabase testList2 = testListOfTimes.getAllSwimmerTimes("Katie Ledecky");
         assertEquals(t5, testList2.getTime(0));
     }
 

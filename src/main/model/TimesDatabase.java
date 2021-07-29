@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListOfTimes {
+public class TimesDatabase {
     private List<Time> timeList;
 
     // EFFECTS: constructs an empty list of Times
-    public ListOfTimes() {
+    public TimesDatabase() {
         timeList = new ArrayList<>();
     }
 
@@ -53,8 +53,8 @@ public class ListOfTimes {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all the best times under a swimmer's name
-    public ListOfTimes getSwimmerBestTime(String swimmerName) {
-        ListOfTimes listOfBestTimes = new ListOfTimes();
+    public TimesDatabase getSwimmerBestTime(String swimmerName) {
+        TimesDatabase listOfBestTimes = new TimesDatabase();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName) && times.isBestTime()) {
@@ -67,8 +67,8 @@ public class ListOfTimes {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all times under a swimmer's name
-    public ListOfTimes getAllSwimmerTimes(String swimmerName) {
-        ListOfTimes listOfAllSwimmerTimes = new ListOfTimes();
+    public TimesDatabase getAllSwimmerTimes(String swimmerName) {
+        TimesDatabase listOfAllSwimmerTimes = new TimesDatabase();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName)) {
@@ -84,6 +84,7 @@ public class ListOfTimes {
         return timeList.size();
     }
 
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // MODIFIES: this
     // EFFECTS: removes a time from the list of times
     public void removeTime(Time t) {

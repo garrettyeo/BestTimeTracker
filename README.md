@@ -17,3 +17,5 @@ track my performance relative to my goal times. This application will make it ea
 - As a user, I want to be able to view a list of all times
 - As a user, I want to be able to search a name and view all the best times under a swimmer's name
 - As a user, I want to be able to delete a time from my list of times
+- As a user, I want to be able to save my updated time database to file
+- As a user, I want to be able to load my previous time database from file
