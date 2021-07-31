@@ -1,13 +1,18 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class TimesDatabase {
+public class TimeDatabase {
     private List<Time> timeList;
 
     // EFFECTS: constructs an empty list of Times
-    public TimesDatabase() {
+    public TimeDatabase() {
         timeList = new ArrayList<>();
     }
 
@@ -53,8 +58,8 @@ public class TimesDatabase {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all the best times under a swimmer's name
-    public TimesDatabase getSwimmerBestTime(String swimmerName) {
-        TimesDatabase listOfBestTimes = new TimesDatabase();
+    public TimeDatabase getSwimmerBestTime(String swimmerName) {
+        TimeDatabase listOfBestTimes = new TimeDatabase();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName) && times.isBestTime()) {
@@ -67,8 +72,8 @@ public class TimesDatabase {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all times under a swimmer's name
-    public TimesDatabase getAllSwimmerTimes(String swimmerName) {
-        TimesDatabase listOfAllSwimmerTimes = new TimesDatabase();
+    public TimeDatabase getAllSwimmerTimes(String swimmerName) {
+        TimeDatabase listOfAllSwimmerTimes = new TimeDatabase();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName)) {
@@ -80,7 +85,7 @@ public class TimesDatabase {
     }
 
     // EFFECTS: returns length of a list
-    public int getSize() {
+    public int numTimes() {
         return timeList.size();
     }
 
@@ -89,6 +94,28 @@ public class TimesDatabase {
     // EFFECTS: removes a time from the list of times
     public void removeTime(Time t) {
         timeList.remove(t);
+    }
 
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<Time> getTimeList() {
+        return Collections.unmodifiableList(timeList);
+    }
+
+    //@Override why can't I override????
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("times", timesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this time as a JSON array
+    private JSONArray timesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Time times : timeList) {
+            jsonArray.put(times.toJson());
+        }
+
+        return jsonArray;
     }
 }

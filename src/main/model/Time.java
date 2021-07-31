@@ -1,10 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents a swimmer's time having the swimmer's name, swimmer group, age group, swim meet swum, event name, and
 // time for that event
-public class Time {
+public class Time implements persistence.Writable {
     private String name;
-    private char swimmerGroup;          // the swimmer's sex (M or F)
+    private String swimmerGroup;          // the swimmer's sex (M or F)
     private int age;                    // age group
     private String meetName;            // name of swim meet where event was swum
     private String event;               // Butterfly, Backstroke, Breaststroke, Freestyle
@@ -14,7 +16,7 @@ public class Time {
 
     // MODIFIES: THIS
     // EFFECTS: constructs a Time initialized with the following parameters
-    public Time(String name, char swimmerGroup, int age, String meetName, String event, String eventTime) {
+    public Time(String name, String swimmerGroup, int age, String meetName, String event, String eventTime) {
         this.name = name;
         this.swimmerGroup = swimmerGroup;
         this.age = age;
@@ -31,7 +33,7 @@ public class Time {
     }
 
     // EFFECTS: returns the swimmer group
-    public char getSwimmerGroup() {
+    public String getSwimmerGroup() {
         return swimmerGroup;
     }
 
@@ -77,5 +79,17 @@ public class Time {
 
     public void setNoBestTime() {
         isBestTime = false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("sex", swimmerGroup);
+        json.put("age", age);
+        json.put("meet", meetName);
+        json.put("event", event);
+        json.put("time", eventTime);
+        return json;
     }
 }

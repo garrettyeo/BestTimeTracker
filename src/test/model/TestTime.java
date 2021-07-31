@@ -9,7 +9,7 @@ class TestTime {
 
     @BeforeEach
     public void setup() {
-        testTime = new Time("Garrett", 'M', 21, "Lower Mainland Invitational",
+        testTime = new Time("Garrett", "M", 21, "Lower Mainland Invitational",
                 "100 Breaststroke", "1:05:25");
     }
 

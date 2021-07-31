@@ -1,26 +1,27 @@
 package ui;
 
-import model.TimesDatabase;
+import model.TimeDatabase;
 import model.Time;
 
 import java.util.Scanner;
 
 // Best time tracker application. Also contains code for console prompts
-// menu design and other console prompts are based on or reuses code from TellerApp.java class from
-// TellerApp example repo
+// NOTE: much of this code for the menu design and other console prompts are based on or reuses code from
+// TellerApp.java class from TellerApp example repo of CPSC 210
 public class BestTimeTrackerApp {
     private Scanner input;
-    private TimesDatabase timeList;
+    private TimeDatabase timeList;
     private Time swimmerGroup;
 
+    // TODO remove dummy values
     //initialized Time values to be used for console demo
-    private Time t1 = new Time("Garrett", 'M', 21, "Lower Mainland Invitational",
+    private Time t1 = new Time("Garrett", "M", 21, "Lower Mainland Invitational",
             "100 Breaststroke", "1:05:25");
-    private Time t2 = new Time("Daiya", 'M', 25, "World Championships",
+    private Time t2 = new Time("Daiya", "M", 25, "World Championships",
             "400 IM", "4:06:23");
-    private Time t3 = new Time("Daiya", 'M', 26, "Tokyo Olympics",
+    private Time t3 = new Time("Daiya", "M", 26, "Tokyo Olympics",
             "400 IM", "4:10:23");
-    private Time t4 = new Time("Daiya", 'M', 26, "Tokyo Olympics",
+    private Time t4 = new Time("Daiya", "M", 26, "Tokyo Olympics",
             "200 Butterfly", "1:52:00");
 
     // EFFECTS: runs the best time tracker application
@@ -69,7 +70,7 @@ public class BestTimeTrackerApp {
     // MODIFIES: this
     // EFFECTS: initializes Times
     private void init() {
-        timeList = new TimesDatabase();
+        timeList = new TimeDatabase();
         timeList.addTime(t1);
         timeList.addTime(t2);
         timeList.addTime(t3);
@@ -94,7 +95,7 @@ public class BestTimeTrackerApp {
         System.out.println("\n\tName:");
         String name = input.next();
         System.out.println("\tSex:");
-        char sex = input.next().charAt(0);
+        String sex = input.next();
         System.out.println("\tAge:");
         int age = input.nextInt();
         System.out.println("\tMeet name:");
@@ -117,7 +118,7 @@ public class BestTimeTrackerApp {
         System.out.println("\n\tName:");
         String name = input.next();
         System.out.println("\tSex:");
-        char sex = input.next().charAt(0);
+        String sex = input.next();
         System.out.println("\tAge:");
         int age = input.nextInt();
         System.out.println("\tMeet name:");
@@ -141,8 +142,8 @@ public class BestTimeTrackerApp {
         String name = input.next();
         System.out.println("\n\t" + name + "'s best times:");
 
-        TimesDatabase swimmerBestTimes = timeList.getSwimmerBestTime(name);
-        int size = swimmerBestTimes.getSize();
+        TimeDatabase swimmerBestTimes = timeList.getSwimmerBestTime(name);
+        int size = swimmerBestTimes.numTimes();
 
         for (int i = 0; i < size; i++) {
             Time t = swimmerBestTimes.getTime(i);
@@ -155,12 +156,14 @@ public class BestTimeTrackerApp {
     //MODIFIES: this
     // EFFECTS: displays all times in list
     private void doDisplayAll() {
-        System.out.println("\t" + "Time \t Sex \t Age \t Meet \t Event \t Time");
-        int size = timeList.getSize();
+        System.out.println(String.format("\t%-20s%-5s%-5s%-30s%-18s%-4s", "Name", "Sex", "Age", "Meet", "Event",
+                "Time"));
+        System.out.println(String.format("\t%-86s", " ").replace(' ', '-'));
+        int size = timeList.numTimes();
         for (int i = 0; i < size; i++) {
             Time t = timeList.getTime(i);
-            System.out.println("\t" + t.getName() + "\t" + t.getSwimmerGroup() + "\t" + t.getAge() + "\t"
-                    + t.getMeetName() + "\t" + t.getEvent() + "\t " + t.getEventTime());
+            System.out.println(String.format("\t%-20s%-5s%-5d%-30s%-18s%-8s", t.getName(), t.getSwimmerGroup(),
+                    t.getAge(), t.getMeetName(), t.getEvent(), t.getEventTime()));
         }
     }
 }
