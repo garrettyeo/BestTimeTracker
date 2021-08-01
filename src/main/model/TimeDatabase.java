@@ -58,12 +58,12 @@ public class TimeDatabase {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all the best times under a swimmer's name
-    public TimeDatabase getSwimmerBestTime(String swimmerName) {
-        TimeDatabase listOfBestTimes = new TimeDatabase();
+    public List<Time> getSwimmerBestTime(String swimmerName) {
+        List<Time> listOfBestTimes = new ArrayList<>();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName) && times.isBestTime()) {
-                listOfBestTimes.addTime(times);
+                listOfBestTimes.add(times);
             }
         }
 
@@ -72,12 +72,12 @@ public class TimeDatabase {
 
     // MODIFIES: this
     // EFFECTS: filters a list of all times under a swimmer's name
-    public TimeDatabase getAllSwimmerTimes(String swimmerName) {
-        TimeDatabase listOfAllSwimmerTimes = new TimeDatabase();
+    public List<Time> getAllSwimmerTimes(String swimmerName) {
+        List<Time> listOfAllSwimmerTimes = new ArrayList<>();
 
         for (Time times : timeList) {
             if (times.getName().equals(swimmerName)) {
-                listOfAllSwimmerTimes.addTime(times);
+                listOfAllSwimmerTimes.add(times);
             }
         }
 
@@ -89,14 +89,18 @@ public class TimeDatabase {
         return timeList.size();
     }
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // MODIFIES: this
     // EFFECTS: removes a time from the list of times
-    public void removeTime(Time t) {
-        timeList.remove(t);
+    public void removeTime(String name, String meetName, String eventName) {
+        for (Time times : timeList) {
+            if (times.getName().equals(name) && times.getMeetName().equals(meetName)
+                    && times.getEvent().equals(eventName)) {
+                timeList.remove(times);
+            }
+        }
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of times in this time database
     public List<Time> getTimeList() {
         return Collections.unmodifiableList(timeList);
     }

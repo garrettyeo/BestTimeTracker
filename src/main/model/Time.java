@@ -59,7 +59,7 @@ public class Time implements persistence.Writable {
 
     // REQUIRES: a time
     // MODIFIES: this
-    // EFFECTS: converts event time field from mm:ss:ms format to a time in tenths of seconds
+    // EFFECTS: converts event time field from mm:ss:ms format to a time in deciseconds
     public int eventTimeInSeconds(String eventTime) {
         String[] minSec = eventTime.split(":");
         int mins = Integer.parseInt(minSec[0]);

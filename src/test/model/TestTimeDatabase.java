@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTimeDatabase {
@@ -64,12 +67,12 @@ public class TestTimeDatabase {
         testListOfTimes.addTime(t5);
         testListOfTimes.addTime(t6);
 
-        TimeDatabase testList1 = testListOfTimes.getSwimmerBestTime("Daiya Seto");
-        assertEquals(t2, testList1.getTime(0));
-        assertEquals(t6, testList1.getTime(1));
+        List<Time> testList1 = testListOfTimes.getSwimmerBestTime("Daiya Seto");
+        assertEquals(t2, testList1.get(0));
+        assertEquals(t6, testList1.get(1));
 
-        TimeDatabase testList2 = testListOfTimes.getSwimmerBestTime("Garrett Yeo");
-        assertEquals(t1, testList2.getTime(0));
+        List<Time> testList2 = testListOfTimes.getSwimmerBestTime("Garrett Yeo");
+        assertEquals(t1, testList2.get(0));
     }
 
     @Test
@@ -83,18 +86,20 @@ public class TestTimeDatabase {
         testListOfTimes.addTime(t5);
         testListOfTimes.addTime(t6);
 
-        TimeDatabase testList1 = testListOfTimes.getAllSwimmerTimes("Daiya Seto");
-        assertEquals(t2, testList1.getTime(0));
-        assertEquals(t3, testList1.getTime(1));
-        assertEquals(t6, testList1.getTime(3));
+        List<Time> testList1 = testListOfTimes.getAllSwimmerTimes("Daiya Seto");
+        assertEquals(t2, testList1.get(0));
+        assertEquals(t3, testList1.get(1));
+        assertEquals(t6, testList1.get(3));
 
-        TimeDatabase testList2 = testListOfTimes.getAllSwimmerTimes("Katie Ledecky");
-        assertEquals(t5, testList2.getTime(0));
+        List<Time> testList2 = testListOfTimes.getAllSwimmerTimes("Katie Ledecky");
+        assertEquals(t5, testList2.get(0));
     }
 
     @Test
     public void testRemoveTime() {
-       testListOfTimes.removeTime(t2);
-       assertEquals(t3, testListOfTimes.getTime(1));
+        assertEquals(3, testListOfTimes.numTimes());
+        testListOfTimes.removeTime("Daiya Seto", "World Championships", "400 IM");
+        assertEquals(t3, testListOfTimes.getTime(1));
+        assertEquals(2, testListOfTimes.numTimes());
     }
 }
