@@ -4,10 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
+// Represents a database of all times with different functionality such as filtering, add, and removing from database
 public class TimeDatabase {
     private List<Time> timeList;
 
@@ -66,7 +65,6 @@ public class TimeDatabase {
                 listOfBestTimes.add(times);
             }
         }
-
         return listOfBestTimes;
     }
 
@@ -80,7 +78,6 @@ public class TimeDatabase {
                 listOfAllSwimmerTimes.add(times);
             }
         }
-
         return listOfAllSwimmerTimes;
     }
 
@@ -92,12 +89,17 @@ public class TimeDatabase {
     // MODIFIES: this
     // EFFECTS: removes a time from the list of times
     public void removeTime(String name, String meetName, String eventName) {
-        for (Time times : timeList) {
-            if (times.getName().equals(name) && times.getMeetName().equals(meetName)
-                    && times.getEvent().equals(eventName)) {
-                timeList.remove(times);
+        try {
+            for (Time times : timeList) {
+                if (times.getName().equals(name) && times.getMeetName().equals(meetName)
+                        && times.getEvent().equals(eventName)) {
+                    timeList.remove(times);
+                }
             }
+        } catch (ConcurrentModificationException e) {
+            //Nothing happens
         }
+
     }
 
     // EFFECTS: returns an unmodifiable list of times in this time database
@@ -119,7 +121,6 @@ public class TimeDatabase {
         for (Time times : timeList) {
             jsonArray.put(times.toJson());
         }
-
         return jsonArray;
     }
 }

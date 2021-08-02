@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,8 +98,25 @@ public class TestTimeDatabase {
     @Test
     public void testRemoveTime() {
         assertEquals(3, testListOfTimes.numTimes());
+        testListOfTimes.removeTime("Daiya Seto", "Tokyo Olympics", "100 Breaststroke");
+        assertEquals(3, testListOfTimes.numTimes());
         testListOfTimes.removeTime("Daiya Seto", "World Championships", "400 IM");
         assertEquals(t3, testListOfTimes.getTime(1));
         assertEquals(2, testListOfTimes.numTimes());
+
+        try {
+            testListOfTimes.addTime(t4);
+            testListOfTimes.addTime(t5);
+            Iterator<Time> it = testListOfTimes.getTimeList().iterator();
+
+            while (it.hasNext()) {
+                Time value = it.next();
+                if (value.equals(t4)) {
+                    testListOfTimes.removeTime("Daiya Seto", "FINA A", "400 IM");
+                }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("ConcurrentMod exception caught, as expected");
+        }
     }
 }

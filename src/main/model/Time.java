@@ -2,8 +2,8 @@ package model;
 
 import org.json.JSONObject;
 
-// Represents a swimmer's time having the swimmer's name, swimmer group, age group, swim meet swum, event name, and
-// time for that event
+// Represents a swimmer's time that contains details like the swimmer's name, swimmer group, age group, meet swum,
+// event name, and time for that event
 public class Time implements persistence.Writable {
     private String name;
     private String swimmerGroup;          // the swimmer's sex (M or F)

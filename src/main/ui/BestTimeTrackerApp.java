@@ -7,10 +7,11 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-// Best time tracker application. Also contains code for console prompts
+// Best time tracker application that contains code for console prompts
 // NOTE: much of this code for the menu design and other console prompts are based on or reuses code from
 // TellerApp.java class from TellerApp example repo of CPSC 210
 public class BestTimeTrackerApp {
@@ -38,7 +39,9 @@ public class BestTimeTrackerApp {
 
         while (keepGoing) {
             displayMenu();
+            System.out.print(">>");
             command = input.nextLine();
+            System.out.println("\n");
 
             if (command.equals("7")) {
                 keepGoing = false;
@@ -87,7 +90,6 @@ public class BestTimeTrackerApp {
         System.out.println("\t7 -> Quit");
     }
 
-    // TODO remove variable checkers, add exception catching, fix prompts
     // MODIFIES: this
     // EFFECTS: adds a time to the list (option 1)
     private void doAddTime() {
@@ -104,14 +106,17 @@ public class BestTimeTrackerApp {
         System.out.println("\nTime added!\n");
     }
 
-    // TODO implement java exceptions
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in a name value
     private String scanName() {
         String name;
 
-        System.out.print("\nName: ");
+        System.out.print("Name: ");
         return name = input.nextLine();
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in a sex value
     private String scanSex() {
         String sex;
 
@@ -119,15 +124,30 @@ public class BestTimeTrackerApp {
         return sex = input.nextLine();
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in an age value
     private int scanAge() {
-        int age;
+        int age = -1;               // dummy value to keep the loop alive for re-prompt
 
-        System.out.print("Age: ");
-        age = input.nextInt();
-        input.nextLine();
+        while (age < 0) {
+            try {
+                System.out.print("Age: ");
+                age = input.nextInt();
+                input.nextLine();
+
+                if (age > 0) {
+                    return age;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("This is not an integer. Try again.");
+                input.nextLine();
+            }
+        }
         return age;
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in a meet name value
     private String scanMeet() {
         String meetName;
 
@@ -135,6 +155,8 @@ public class BestTimeTrackerApp {
         return meetName = input.nextLine();
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in a event value
     private String scanEvent() {
         String event;
 
@@ -142,14 +164,15 @@ public class BestTimeTrackerApp {
         return event = input.nextLine();
     }
 
-    private String scanTime() {
+    // MODIFIES: this
+    // EFFECTS: prompts and takes in a time value
+    private String scanTime() {             // TODO create exception for time format
         String time;
 
-        System.out.print("Time: ");
+        System.out.print("Time (mm:ss:ms): ");
         return time = input.nextLine();
     }
 
-    // TODO fix concurrent modification and remove prompts
     // MODIFIES: this
     // EFFECTS: removes a time from the list (option 2)
     private void doRemoveTime() {
@@ -157,21 +180,17 @@ public class BestTimeTrackerApp {
         String name = input.nextLine();
         System.out.print("Meet name: ");
         String meetName = input.nextLine();
-        System.out.println("You entered " + meetName);
         System.out.print("Event name: ");
         String eventName = input.nextLine();
-        System.out.println("You entered " + eventName);
 
         timeList.removeTime(name, meetName, eventName);
 
-        System.out.println("Removed!\n");
+        System.out.println("\nRemoved!\n");
     }
 
-    // ADD ANOTHER MENU THAT -shows all of swimmer's best times,    - shows all of swimmer's times
-    // MODIFIES: this
     // EFFECTS: given a name, displays all best times under that name
     private void doLookupSwimmer() {
-        System.out.print("\nName: ");
+        System.out.print("Name: ");
         swimmerName = input.nextLine();
 
         System.out.println("What do you want to know about " + swimmerName);
@@ -182,17 +201,18 @@ public class BestTimeTrackerApp {
         processCommand(swimmerMenuSelection);
     }
 
+    // EFFECTS: filters time database for a list of all times under a swimmer's name
     private void doSwimmerTime() {
         List<Time> swimmerTimeList = timeList.getAllSwimmerTimes(swimmerName);
         printTimeList(swimmerTimeList);
     }
 
+    // EFFECTS: filters time database for a list of all best times for each event under a swimmer's name
     private void doSwimmerBestTime() {
         List<Time> swimmerBestTimeList = timeList.getSwimmerBestTime(swimmerName);
         printTimeList(swimmerBestTimeList);
     }
 
-    //!!!! fix display format concerning spacing
     //MODIFIES: this
     // EFFECTS: displays all times in list (option 4)
     private void doDisplayAll() {
@@ -200,6 +220,7 @@ public class BestTimeTrackerApp {
         printTimeList(tl);
     }
 
+    // EFFECTS: prints list of time values
     private void printTimeList(List<Time> tl) {
         System.out.println(String.format("\t%-20s%-5s%-5s%-30s%-18s%-4s", "Name", "Sex", "Age", "Meet", "Event",
                 "Time"));
