@@ -7,7 +7,7 @@ import org.json.JSONObject;
 public class Time implements persistence.Writable {
     private String name;
     private String swimmerGroup;          // the swimmer's sex (M or F)
-    private int age;                    // age group
+    private String age;                    // age group
     private String meetName;            // name of swim meet where event was swum
     private String event;               // Butterfly, Backstroke, Breaststroke, Freestyle
     private String eventTime;              // mm:ss:ms
@@ -16,7 +16,7 @@ public class Time implements persistence.Writable {
 
     // MODIFIES: THIS
     // EFFECTS: constructs a Time initialized with the following parameters
-    public Time(String name, String swimmerGroup, int age, String meetName, String event, String eventTime) {
+    public Time(String name, String swimmerGroup, String age, String meetName, String event, String eventTime) {
         this.name = name;
         this.swimmerGroup = swimmerGroup;
         this.age = age;
@@ -38,7 +38,7 @@ public class Time implements persistence.Writable {
     }
 
     // EFFECTS: returns age
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 

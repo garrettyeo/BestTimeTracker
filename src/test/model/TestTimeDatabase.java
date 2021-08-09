@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTimeDatabase {
     private TimeDatabase testListOfTimes;
-    private Time t1 = new Time("Garrett Yeo", "M", 21, "Lower Mainland Invitational",
+    private Time t1 = new Time("Garrett Yeo", "M", "21", "Lower Mainland Invitational",
             "100 Breaststroke", "1:05:25");
-    private Time t2 = new Time("Daiya Seto", "M", 25, "World Championships",
+    private Time t2 = new Time("Daiya Seto", "M", "25", "World Championships",
             "400 IM", "4:06:23");
-    private Time t3 = new Time("Daiya Seto", "M", 26, "Tokyo Olympics",
+    private Time t3 = new Time("Daiya Seto", "M", "26", "Tokyo Olympics",
             "400 IM", "4:10:23");
-    private Time t4 = new Time("Daiya Seto", "M", 26, "FINA A",
+    private Time t4 = new Time("Daiya Seto", "M", "26", "FINA A",
             "400 IM", "4:10:53");
-    private Time t5 = new Time("Katie Ledecky", "F", 26, "Tokyo Olympics",
+    private Time t5 = new Time("Katie Ledecky", "F", "26", "Tokyo Olympics",
             "400 Freestyle", "4:00:00");
-    private Time t6 = new Time("Daiya Seto", "M", 26, "Tokyo Olympics",
+    private Time t6 = new Time("Daiya Seto", "M", "26", "Tokyo Olympics",
             "200 Butterfly", "1:52:00");
-    private Time t7 = new Time("Daiya Seto", "M", 25, "Tokyo Olympics",
+    private Time t7 = new Time("Daiya Seto", "M", "25", "Tokyo Olympics",
             "200 IM", "1:59:14");
 
 

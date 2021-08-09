@@ -5,7 +5,7 @@
         "name": "Garrett Yeo",
         "time": "0:59:99",
         "event": "100 Breaststroke",
-        "age": 21
+        "age": "21"
     },
     {
         "meet": "World Championships",
@@ -13,7 +13,7 @@
         "name": "Caeleb Dressel",
         "time": "0:22:38",
         "event": "50 Freestyle",
-        "age": 24
+        "age": "24"
     },
     {
         "meet": "Tokyo Olympics",
@@ -21,7 +21,7 @@
         "name": "Caeleb Dressel",
         "time": "0:21:07",
         "event": "50 Freestyle",
-        "age": 23
+        "age": "23"
     },
     {
         "meet": "Tokyo Olympics",
@@ -29,6 +29,22 @@
         "name": "Caeleb Dressel",
         "time": "0:49:45",
         "event": "100 Butterfly",
-        "age": 24
+        "age": "24"
+    },
+    {
+        "meet": "Burnaby",
+        "sex": "M",
+        "name": "Garrett Yeo",
+        "time": "1:00:00",
+        "event": "100 Butterfly",
+        "age": "21"
+    },
+    {
+        "meet": "Meet",
+        "sex": "F",
+        "name": "Garrett Yeo",
+        "time": "4:00:00",
+        "event": "400 Individual Medley",
+        "age": "23"
     }
 ]}

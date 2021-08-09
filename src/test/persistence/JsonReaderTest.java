@@ -44,8 +44,8 @@ public class JsonReaderTest extends JsonTest {
             TimeDatabase tdb = reader.readTimeDatabaseFile();
             List<Time> timeList = tdb.getTimeList();                  // create a list of times
             assertEquals(2, timeList.size());
-            checkTime("Garrett", "M", 21, "Tokyo Olympics", "200 butterfly", "2:00:00", timeList.get(0));
-            checkTime("Caeleb Dressel", "M", 24, "Tokyo Olympics", "200 butterfly", "1:50:00", timeList.get(1));
+            checkTime("Garrett", "M", "21", "Tokyo Olympics", "200 butterfly", "2:00:00", timeList.get(0));
+            checkTime("Caeleb Dressel", "M", "24", "Tokyo Olympics", "200 butterfly", "1:50:00", timeList.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

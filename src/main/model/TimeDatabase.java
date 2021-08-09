@@ -9,6 +9,11 @@ import java.util.*;
 // Represents a database of all times with different functionality such as filtering, add, and removing from database
 public class TimeDatabase {
     private List<Time> timeList;
+    private Time time;
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
 
     // EFFECTS: constructs an empty list of Times
     public TimeDatabase() {

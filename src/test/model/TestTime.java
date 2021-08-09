@@ -9,7 +9,7 @@ class TestTime {
 
     @BeforeEach
     public void setup() {
-        testTime = new Time("Garrett", "M", 21, "Lower Mainland Invitational",
+        testTime = new Time("Garrett", "M", "21", "Lower Mainland Invitational",
                 "100 Breaststroke", "1:05:25");
     }
 
@@ -20,12 +20,12 @@ class TestTime {
 
     @Test
     public void testGetSwimmerGroup() {
-        assertEquals('M', testTime.getSwimmerGroup());
+        assertEquals("M", testTime.getSwimmerGroup());
     }
 
     @Test
     public void testGetAge() {
-        assertEquals(21, testTime.getAge());
+        assertEquals("21", testTime.getAge());
     }
 
     @Test

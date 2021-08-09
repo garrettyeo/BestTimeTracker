@@ -95,7 +95,7 @@ public class BestTimeTrackerApp {
     private void doAddTime() {
         String name = scanName();
         String sex = scanSex();
-        int age = scanAge();
+        String age = scanAge();
         String meetName = scanMeet();
         String eventName = scanEvent();
         String eventTime = scanTime();
@@ -120,30 +120,17 @@ public class BestTimeTrackerApp {
     private String scanSex() {
         String sex;
 
-        System.out.print("Sex: ");
+        System.out.print("Sex (M/F): ");
         return sex = input.nextLine();
     }
 
     // MODIFIES: this
     // EFFECTS: prompts and takes in an age value
-    private int scanAge() {
-        int age = -1;               // dummy value to keep the loop alive for re-prompt
+    private String  scanAge() {
+        String age;
 
-        while (age < 0) {
-            try {
-                System.out.print("Age: ");
-                age = input.nextInt();
-                input.nextLine();
-
-                if (age > 0) {
-                    return age;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("This is not an integer. Try again.");
-                input.nextLine();
-            }
-        }
-        return age;
+        System.out.print("Age: ");
+        return age = input.nextLine();
     }
 
     // MODIFIES: this

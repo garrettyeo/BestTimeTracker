@@ -5,7 +5,7 @@
         "name": "Garrett",
         "time": "2:00:00",
         "event": "200 Butterfly",
-        "age": 21
+        "age": "21"
     },
     {
         "meet": "Tokyo Olympics",
@@ -13,6 +13,6 @@
         "name": "Caeleb Dressel",
         "time": "1:50:00",
         "event": "200 butterfly",
-        "age": 24
+        "age": "24"
     }
 ]}

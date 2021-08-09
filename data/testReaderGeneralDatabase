@@ -3,7 +3,7 @@
     {
       "name": "Garrett",
       "sex": "M",
-      "age": 21,
+      "age": "21",
       "meet": "Tokyo Olympics",
       "event": "200 butterfly",
       "time": "2:00:00"
@@ -11,7 +11,7 @@
     {
       "name": "Caeleb Dressel",
       "sex": "M",
-      "age": 24,
+      "age": "24",
       "meet": "Tokyo Olympics",
       "event": "200 butterfly",
       "time": "1:50:00"

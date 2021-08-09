@@ -46,8 +46,8 @@ public class JsonWriterTest extends JsonTest{
     void testWriterGeneralDatabase() {
         try {
             TimeDatabase tdb = new TimeDatabase();
-            tdb.addTime(new Time("Garrett", "M", 21, "Tokyo Olympics", "200 Butterfly", "2:00:00"));
-            tdb.addTime(new Time("Caeleb Dressel", "M", 24, "Tokyo Olympics", "200 butterfly", "1:50:00"));
+            tdb.addTime(new Time("Garrett", "M", "21", "Tokyo Olympics", "200 Butterfly", "2:00:00"));
+            tdb.addTime(new Time("Caeleb Dressel", "M", "24", "Tokyo Olympics", "200 butterfly", "1:50:00"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
             writer.openTimeDatabaseFile();
             writer.write(tdb);
@@ -57,8 +57,8 @@ public class JsonWriterTest extends JsonTest{
             tdb = reader.readTimeDatabaseFile();
             List<Time> timeList = tdb.getTimeList();
             assertEquals(2, timeList.size());
-            checkTime("Garrett", "M", 21, "Tokyo Olympics", "200 Butterfly", "2:00:00", timeList.get(0));
-            checkTime("Caeleb Dressel", "M", 24, "Tokyo Olympics", "200 butterfly", "1:50:00", timeList.get(1));
+            checkTime("Garrett", "M", "21", "Tokyo Olympics", "200 Butterfly", "2:00:00", timeList.get(0));
+            checkTime("Caeleb Dressel", "M", "24", "Tokyo Olympics", "200 butterfly", "1:50:00", timeList.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

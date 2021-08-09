@@ -64,7 +64,7 @@ public class JsonReader {
     private void addTime(TimeDatabase tdb, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String swimmerGroup = jsonObject.getString("sex");
-        int age = jsonObject.getInt("age");
+        String age = jsonObject.getString("age");
         String meetName = jsonObject.getString("meet");
         String eventName = jsonObject.getString("event");
         String eventTime = jsonObject.getString("time");
