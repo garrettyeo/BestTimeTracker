@@ -71,15 +71,16 @@ public class TimeDatabasePanel extends JPanel {
         data.clear();
     }
 
+    // EFFECTS: returns reference to this scroll table
     public JScrollPane getSpTable() {
         return spTable;
     }
 
+    // EFFECTS: returns reference to this JTable
     public JTable getTable() {
         return table;
     }
 
-    // MODIFIES: this
     // EFFECTS: returns vector row at index from data
     public Vector<String> getRow(int index) {
         return data.get(index);

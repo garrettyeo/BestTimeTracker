@@ -29,10 +29,12 @@ public class FileMenuBar extends JMenuBar {
         add(menuBar);
     }
 
+    // EFFECTS: returns reference to menu save button
     public JMenuItem getMenuItemSave() {
         return menuItemSave;
     }
 
+    // EFFECTS: returns reference to menu load button
     public JMenuItem getMenuItemLoad() {
         return menuItemLoad;
     }

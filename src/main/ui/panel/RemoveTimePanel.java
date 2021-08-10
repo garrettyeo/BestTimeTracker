@@ -9,13 +9,13 @@ public class RemoveTimePanel extends JPanel {
 
     // EFFECTS: constructs the remove time panel
     public RemoveTimePanel() {
-        addComponents();
         setRemoveTimeButton();
+        addComponents();
         setLayout(null);
     }
 
     // MODIFIES: this
-    // EFFECTS: sets up remove time button styling according to specifications
+    // EFFECTS: sets up a remove time button with the following specifications
     private void setRemoveTimeButton() {
         Dimension preferredSize = new Dimension(100, 100);
         removeTimeButton = new JButton("Remove Time");
@@ -26,12 +26,13 @@ public class RemoveTimePanel extends JPanel {
         setPreferredSize(preferredSize);
     }
 
+    // EFFECTS: returns reference to remove time button
     public JButton getRemoveTimeButton() {
         return removeTimeButton;
     }
 
     // MODIFIES: this
-    // EFFECTS: adds remove time button to panel
+    // EFFECTS: adds remove time button to this panel
     private void addComponents() {
         add(removeTimeButton);
     }

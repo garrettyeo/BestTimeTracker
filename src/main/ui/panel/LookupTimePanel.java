@@ -56,6 +56,7 @@ public class LookupTimePanel extends JPanel {
         return nameLookupButton;
     }
 
+    // EFFECTS: returns reference for the name to look up input field
     public JTextField getNameLookupInput() {
         return nameLookupInput;
     }
@@ -72,7 +73,6 @@ public class LookupTimePanel extends JPanel {
         checkboxPanel.setLayout(new GridLayout(6, 2, 10, 10));
     }
 
-    // MODIFIES: this
     // EFFECTS: initializes all fields
     private void initializeFields() {
         stroke1Checkbox = new JCheckBox("Butterfly");
