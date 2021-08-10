@@ -18,6 +18,9 @@ import persistence.JsonWriter;
 import ui.panel.*;
 
 // Represents application window that contains all panels, their components, and their interactions
+// NOTE: much of this code for the window layout and action listeners are based on or reuses code from the
+// SimpleDrawingPlayerEditor.java class from the SimpleDrawingPlayer example repo of CPSC 210. Layout and panels are
+// also inspired by the HyTek Meet Manager application
 public class BestTimeTrackerEditor extends JFrame {
     public static final int WIDTH = 1300;
     public static final int HEIGHT = 700;
@@ -43,6 +46,7 @@ public class BestTimeTrackerEditor extends JFrame {
     private JButton nameLookupButton;
     private JCheckBox bestTimeCheckbox;
 
+    // EFFECTS: constructs the application window and initializes panels and necessary data and data persistence objects
     public BestTimeTrackerEditor() {
         super("Best Time Tracker");
         newTimePanel = new NewTimePanel();
@@ -57,12 +61,12 @@ public class BestTimeTrackerEditor extends JFrame {
 
         addPanelsToWindow();
         addActionListeners();
-        initializeWindow();
+        initializeDefaultWindow();
     }
 
     // MODIFIES: this
     // EFFECTS: sets default properties for window
-    private void initializeWindow() {
+    private void initializeDefaultWindow() {
         setIconImage(new ImageIcon("src/main/ui/asset/image/swimicon.png").getImage());  // find cleaner icon
         setPreferredSize(size);
         setMinimumSize(size);
@@ -74,7 +78,7 @@ public class BestTimeTrackerEditor extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds panels to windows layout
+    // EFFECTS: adds panels to application window layout
     private void addPanelsToWindow() {
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
@@ -83,9 +87,11 @@ public class BestTimeTrackerEditor extends JFrame {
         contentPane.add(newTimePanel, BorderLayout.NORTH);
         contentPane.add(timeDatabasePanel, BorderLayout.EAST);
         contentPane.add(removeTimePanel, BorderLayout.SOUTH);
-        //contentPane.add(lookupTimePanel, BorderLayout.WEST);
+        contentPane.add(lookupTimePanel, BorderLayout.WEST);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds and invokes all GUI action listeners
     private void addActionListeners() {
         addTimeButton = newTimePanel.getAddTimeButton();
         addTimeButton.addActionListener(this::addTimeButtonClicked);
@@ -95,12 +101,12 @@ public class BestTimeTrackerEditor extends JFrame {
         menuSaveButton.addActionListener(this::saveFileButtonClicked);
         removeTimeButton = removeTimePanel.getRemoveTimeButton();
         removeTimeButton.addActionListener((this::removeTimeButtonClicked));
-
-        /* to be implemented later
         nameLookupButton = lookupTimePanel.getNameLookupButton();
-        nameLookupButton.addActionListener(this::nameLookupButtonClicked);*/
+        nameLookupButton.addActionListener(this::nameLookupButtonClicked);
     }
 
+    // MODIFIES: this
+    // EFFECTS: invokes action listener whenever a time is added
     private void addTimeButtonClicked(ActionEvent actionEvent) {
         try {
             addTimeToList();
@@ -112,12 +118,15 @@ public class BestTimeTrackerEditor extends JFrame {
         } // need to create exception that handles null inputs
     }
 
-    // add new Time to time database
+    // MODIFIES: this, timeDatabase
+    // EFFECTS: adds time to timeDatabase
     private void addTimeToList() {
         Time newTime = getNewTime();
         timeDatabase.addTime(newTime);
     }
 
+    // MODIFIES: this
+    // EFFECTS: pulls information from add new time panel inputs and returns information in a Time object
     private Time getNewTime() {
         JTextField nameInput = newTimePanel.getNameInput();
         JComboBox swimmerGroupDropdown = newTimePanel.getSwimmerGroupDropdown();
@@ -139,6 +148,8 @@ public class BestTimeTrackerEditor extends JFrame {
         return new Time(name, swimmerGroup, age, meetName, event, eventTime);
     }
 
+    // MODIFIES: this
+    // EFFECTS: invokes action listener whenever a time is removed
     private void removeTimeButtonClicked(ActionEvent actionEvent) {
         JTable table = timeDatabasePanel.getTable();
         try {
@@ -156,6 +167,8 @@ public class BestTimeTrackerEditor extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: invokes action listener whenever file is to be saved
     private void saveFileButtonClicked(ActionEvent actionEvent) {
         try {
             jsonWriter.openTimeDatabaseFile();
@@ -167,6 +180,8 @@ public class BestTimeTrackerEditor extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: invokes action listener whenever a previous file is to be loaded
     private void loadFileButtonClicked(ActionEvent actionEvent) {
         try {
             timeDatabase = jsonReader.readTimeDatabaseFile();
@@ -177,13 +192,17 @@ public class BestTimeTrackerEditor extends JFrame {
         }
     }
 
-    // could not implement in time
-    /*private void nameLookupButtonClicked(ActionEvent actionEvent) {
+    // MODIFIES: this
+    // EFFECTS: filters timeDatabase and displays a new time table based on swimmers name
+    private void nameLookupButtonClicked(ActionEvent actionEvent) {
         try {
+            timeDatabasePanel.clearData();
             JScrollPane spTableLookup = timeDatabasePanel.getSpTable();
             JTable tableLookup = timeDatabasePanel.getTable();
-            String nameLookupText = nameLookupButton.getText();
+            JTextField nameLookupInput = lookupTimePanel.getNameLookupInput();
+            String nameLookupText = nameLookupInput.getText();
             List<Time> swimmerTimes = timeDatabase.getAllSwimmerTimes(nameLookupText);
+
             for (Time time : swimmerTimes) {
                 Vector<String> timeVector = new Vector<>();
                 timeVector.add(time.getName());
@@ -195,13 +214,14 @@ public class BestTimeTrackerEditor extends JFrame {
                 timeDatabasePanel.addTime(timeVector);
             }
             spTableLookup.setViewportView(tableLookup);
-
-            refreshTableData();
         } catch (ArrayIndexOutOfBoundsException e) {
+            playSound("./src/main/ui/asset/audio/error.wav");
             //nothing much
         }
-    }*/
+    }
 
+    // MODIFIES: this
+    // EFFECTS: displays an updated time table in the timeDatabasePanel
     private void refreshTableData() {   // clean up this code
         JScrollPane spTable = timeDatabasePanel.getSpTable();
         JTable table = timeDatabasePanel.getTable();
@@ -222,7 +242,8 @@ public class BestTimeTrackerEditor extends JFrame {
     }
 
 
-    // sound effect
+    // MODIFIES: this
+    // EFFECTS: given an audio file destination, plays audio file in window when called
     private void playSound(String filePath) {
         try {
             File soundFile = new File(filePath);

@@ -3,19 +3,19 @@ package ui.panel;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents panel and all components for the remove time panel
 public class RemoveTimePanel extends JPanel {
     private JButton removeTimeButton;
 
+    // EFFECTS: constructs the remove time panel
     public RemoveTimePanel() {
-        initializeFields();
         addComponents();
+        setRemoveTimeButton();
         setLayout(null);
     }
 
-    private void initializeFields() {
-        setRemoveTimeButton();
-    }
-
+    // MODIFIES: this
+    // EFFECTS: sets up remove time button styling according to specifications
     private void setRemoveTimeButton() {
         Dimension preferredSize = new Dimension(100, 100);
         removeTimeButton = new JButton("Remove Time");
@@ -30,6 +30,8 @@ public class RemoveTimePanel extends JPanel {
         return removeTimeButton;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds remove time button to panel
     private void addComponents() {
         add(removeTimeButton);
     }

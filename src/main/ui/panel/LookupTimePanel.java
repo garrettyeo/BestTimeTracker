@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-// ************* CODE WAS NOT COMPLETED IN TIME AND NOT IMPLEMENTED IN APPLICATION GUI. PLEASE DO NOT MARK ************
 // Represents panel that allows user to lookup times based on swimmer names and filter times depending on stroke
 public class LookupTimePanel extends JPanel {
     private static final int PADDING = 3;
@@ -31,7 +30,7 @@ public class LookupTimePanel extends JPanel {
         Dimension preferredSize = new Dimension(235, 150);
         this.setPreferredSize(preferredSize);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBorder(new LineBorder(new Color(0,0,0), 2));
+        //this.setBorder(new LineBorder(new Color(0,0,0), 2));
         initializeFields();
         setupTopPanel();
         setupBottomPanel();
@@ -47,14 +46,18 @@ public class LookupTimePanel extends JPanel {
         nameLookupButton = new JButton("Search");
         bestTimeCheckbox = new JCheckBox("Best Time");
         inputPanel.setBorder(BorderFactory.createTitledBorder("Lookup Swimmer"));
-        inputPanel.setPreferredSize(new Dimension(180, 100));
+        inputPanel.setPreferredSize(new Dimension(180, 50));
         nameLookupInput.setPreferredSize(new Dimension(100, 35));
-        inputPanel.setMaximumSize(new Dimension(210, 200));
+        inputPanel.setMaximumSize(new Dimension(210, 75));
     }
 
     // EFFECTS: returns reference to nameLookupButton
     public JButton getNameLookupButton() {
         return nameLookupButton;
+    }
+
+    public JTextField getNameLookupInput() {
+        return nameLookupInput;
     }
 
     // EFFECTS: returns reference to bestTimeCheckbox
@@ -88,12 +91,12 @@ public class LookupTimePanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: adds all instantiated components to lookup pane;
     private void addComponents() {
-        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(Box.createRigidArea(new Dimension(0, 17)));
         add(inputPanel);
-        add(checkboxPanel);
         inputPanel.add(nameLookupInput);
         inputPanel.add(nameLookupButton);
-        inputPanel.add(bestTimeCheckbox);
+        //inputPanel.add(bestTimeCheckbox);
+        /*add(checkboxPanel);
         checkboxPanel.add(stroke1Checkbox);
         checkboxPanel.add(stroke2Checkbox);
         checkboxPanel.add(stroke3Checkbox);
@@ -104,6 +107,6 @@ public class LookupTimePanel extends JPanel {
         checkboxPanel.add(distance3Checkbox);
         checkboxPanel.add(distance4Checkbox);
         checkboxPanel.add(distance5Checkbox);
-        checkboxPanel.add(distance6Checkbox);
+        checkboxPanel.add(distance6Checkbox);*/
     }
 }

@@ -11,10 +11,6 @@ public class TimeDatabase {
     private List<Time> timeList;
     private Time time;
 
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
     // EFFECTS: constructs an empty list of Times
     public TimeDatabase() {
         timeList = new ArrayList<>();

@@ -40,11 +40,11 @@
         "age": "21"
     },
     {
-        "meet": "Meet",
-        "sex": "F",
+        "meet": "SF Regionals",
+        "sex": "M",
         "name": "Garrett Yeo",
-        "time": "4:00:00",
-        "event": "400 Individual Medley",
-        "age": "23"
+        "time": "00:25:67",
+        "event": "50 Freestyle",
+        "age": "21"
     }
 ]}

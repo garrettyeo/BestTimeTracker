@@ -2,6 +2,7 @@ package ui.panel;
 
 import javax.swing.*;
 
+// Represents the menu bar for saving and loading file
 public class FileMenuBar extends JMenuBar {
     private JMenuBar menuBar;
     private JMenu menu;
@@ -15,6 +16,8 @@ public class FileMenuBar extends JMenuBar {
         initializeMenu();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes default menu bar components
     private void initializeMenu() {
         menu = new JMenu("File");
         add(menu);

@@ -3,6 +3,7 @@ package ui.panel;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents panel and all components for add new time feature
 public class NewTimePanel extends JPanel {
     private JTextField nameInput;
     private JComboBox swimmerGroupDropdown;
@@ -21,8 +22,7 @@ public class NewTimePanel extends JPanel {
     private JLabel eventStrokeLabel;
     private JLabel eventTimeLabel;
 
-    private TimeDatabasePanel timeDatabasePanel;
-
+    // EFFECTS: constructs add new time panel
     public NewTimePanel() {
         initializeFields();
         setComponentBounds();
@@ -124,7 +124,6 @@ public class NewTimePanel extends JPanel {
         return labelHandle;
     }
 
-    // make colour variables declaration
     public JButton getAddTimeButton() {
         return addTimeButton;
     }
@@ -149,6 +148,8 @@ public class NewTimePanel extends JPanel {
         eventTimeLabel.setBounds(1000, 30, 100, 25);
     }
 
+    // MODIFIES: this
+    // EFFECTS: turns all component bounds into Dimension object
     private void setComponentDimensions() {
         Dimension preferredSize = new Dimension();
         for (int i = 0; i < getComponentCount(); i++) {
