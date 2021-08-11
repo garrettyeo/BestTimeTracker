@@ -20,3 +20,11 @@ swimmer's name
 - As a user, I want to be able to delete a time from my list of times
 - As a user, I want to be able to save my updated time database to file
 - As a user, I want to be able to load my previous time database from file
+
+## Phase 4: Task 2
+
+In designing my application, it was important to ensure that the user input for time was consistent across all time 
+entries. In the eventTimeInSeconds() method in the Time class, to properly parse the time user input I compared each 
+input to make sure it matched the (mm:ss:ms) format. If not, a checked NumberFormatException was thrown. This exception 
+would then be caught in the addTimeButtonClicked method of the BestTimeTrackerEditor class, which would then play an 
+audio notification and prompt the user to input the time again in the correct format.

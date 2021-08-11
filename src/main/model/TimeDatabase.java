@@ -2,14 +2,12 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.Writable;
 
 import java.util.*;
 
 // Represents a database of all times with different functionality such as filtering, add, and removing from database
 public class TimeDatabase {
     private List<Time> timeList;
-    private Time time;
 
     // EFFECTS: constructs an empty list of Times
     public TimeDatabase() {
@@ -108,7 +106,8 @@ public class TimeDatabase {
         return Collections.unmodifiableList(timeList);
     }
 
-    //@Override why can't I override????
+    // MODIFIES: json
+    // EFFECTS: writes to json object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("times", timesToJson());

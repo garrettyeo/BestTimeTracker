@@ -60,12 +60,16 @@ public class NewTimePanel extends JPanel {
     }
 
     private void setSwimmerGroupDropdown() {
-        String[] sexString = { "", "M", "F" };
+        String[] sexString = { null, "M", "F" };
         swimmerGroupDropdown = new JComboBox(sexString);
         swimmerGroupDropdown.setSelectedIndex(0);
     }
 
     public JComboBox getSwimmerGroupDropdown() {
+        String swimmerGroup = (String) swimmerGroupDropdown.getSelectedItem();
+        if (swimmerGroup == null) {
+            throw new NullPointerException();
+        }
         return swimmerGroupDropdown;
     }
 
@@ -92,15 +96,23 @@ public class NewTimePanel extends JPanel {
     }
 
     public JComboBox getEventDistanceDropdown() {
+        String eventDistance = (String) eventDistanceDropdown.getSelectedItem();
+        if (eventDistance == null) {
+            throw new NullPointerException();
+        }
         return eventDistanceDropdown;
     }
 
     private void setEventStrokeDropdown() {
-        String [] strokeString = {null, "Butterfly", "Backstroke", "Breaststroke", "Freestyle", "Individual Medley"};
+        String [] strokeString = { null, "Butterfly", "Backstroke", "Breaststroke", "Freestyle", "Individual Medley"};
         eventStrokeDropdown = new JComboBox(strokeString);
     }
 
     public JComboBox getEventStrokeDropdown() {
+        String eventStroke = (String) eventStrokeDropdown.getSelectedItem();
+        if (eventStroke == null) {
+            throw new NullPointerException();
+        }
         return eventStrokeDropdown;
     }
 

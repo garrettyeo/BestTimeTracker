@@ -45,7 +45,20 @@ class TestTime {
 
     @Test
     public void testEventTimeInSeconds() {
-        assertEquals(675, testTime.eventTimeInSeconds("1:05:25"));
+        try {
+            assertEquals(675, testTime.eventTimeInSeconds("1:05:25"));
+        } catch (NumberFormatException e) {
+            fail("Unexpected exception.");
+        }
+    }
+
+    @Test
+    public void testEventTimeInSecondsException () {
+        try {
+            assertEquals(675, testTime.eventTimeInSeconds("105:25"));
+        } catch (NumberFormatException e) {
+            System.out.println("Expected exception!");
+        }
     }
 
     @Test

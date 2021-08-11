@@ -60,12 +60,16 @@ public class Time implements persistence.Writable {
     // REQUIRES: a time
     // MODIFIES: this
     // EFFECTS: converts event time field from mm:ss:ms format to a time in deciseconds
-    public int eventTimeInSeconds(String eventTime) {
-        String[] minSec = eventTime.split(":");
-        int mins = Integer.parseInt(minSec[0]);
-        int secs = Integer.parseInt(minSec[1]);
-        int milliSecs = Integer.parseInt(minSec[2]);
-        return (mins * 600) + (secs * 10) + milliSecs;
+    public int eventTimeInSeconds(String eventTime) throws NumberFormatException {
+        if (!eventTime.matches("\\d+:\\d\\d:\\d\\d")) {
+            throw new NumberFormatException();
+        } else {
+            String[] minSec = eventTime.split(":");
+            int mins = Integer.parseInt(minSec[0]);
+            int secs = Integer.parseInt(minSec[1]);
+            int milliSecs = Integer.parseInt(minSec[2]);
+            return (mins * 600) + (secs * 10) + milliSecs;
+        }
     }
 
     // EFFECTS: returns true if it is the best time, false otherwise

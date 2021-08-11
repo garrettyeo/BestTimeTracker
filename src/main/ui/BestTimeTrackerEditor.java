@@ -38,13 +38,20 @@ public class BestTimeTrackerEditor extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // application component references for action listeners
-    private JButton addTimeButton;
+    JTextField nameInput;
+    JComboBox swimmerGroupDropdown;
+    JTextField swimmerAgeInput;
+    JTextField meetDescriptionInput;
+    JComboBox eventDistDropdown;
+    JComboBox eventStrokeDropdown;
+    JTextField eventTimeInput;
+
     private JButton removeTimeButton;
     private JMenuItem menuSaveButton;
     private JMenuItem menuLoadButton;
     private JButton nameLookupButton;
     private JCheckBox bestTimeCheckbox;
+
 
     // EFFECTS: constructs the application window and initializes panels and necessary data and data persistence objects
     public BestTimeTrackerEditor() {
@@ -93,7 +100,8 @@ public class BestTimeTrackerEditor extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds and invokes all GUI action listeners
     private void addActionListeners() {
-        addTimeButton = newTimePanel.getAddTimeButton();
+        // application component references for action listeners
+        JButton addTimeButton = newTimePanel.getAddTimeButton();
         addTimeButton.addActionListener(this::addTimeButtonClicked);
         menuLoadButton = menuBar.getMenuItemLoad();
         menuLoadButton.addActionListener(this::loadFileButtonClicked);
@@ -128,23 +136,28 @@ public class BestTimeTrackerEditor extends JFrame {
     // MODIFIES: this
     // EFFECTS: pulls information from add new time panel inputs and returns information in a Time object
     private Time getNewTime() {
-        JTextField nameInput = newTimePanel.getNameInput();
-        JComboBox swimmerGroupDropdown = newTimePanel.getSwimmerGroupDropdown();
-        JTextField swimmerAgeInput = newTimePanel.getSwimmerAgeInput();
-        JTextField meetDescriptionInput = newTimePanel.getMeetDescriptionInput();
-        JComboBox eventDistanceDropdown = newTimePanel.getEventDistanceDropdown();
-        JComboBox eventStrokeDropdown = newTimePanel.getEventStrokeDropdown();
-        JTextField eventTimeInput = newTimePanel.getEventTimeInput();
-
-        String name = nameInput.getText();
-        String swimmerGroup = (String)swimmerGroupDropdown.getSelectedItem();
-        String age = swimmerAgeInput.getText();
-        String meetName = meetDescriptionInput.getText();
-        String eventDistance = (String)eventDistanceDropdown.getSelectedItem();
-        String eventStroke = (String)eventStrokeDropdown.getSelectedItem();
-        String event = eventDistance + " " + eventStroke;
-        String eventTime = eventTimeInput.getText();
-
+        String name = "";
+        String swimmerGroup = "";
+        String age = "";
+        String meetName = "";
+        String event = "";
+        String eventTime = "";
+        try { // could put object assignments in another method
+            nameInput = newTimePanel.getNameInput();
+            swimmerGroupDropdown = newTimePanel.getSwimmerGroupDropdown();
+            swimmerAgeInput = newTimePanel.getSwimmerAgeInput();
+            meetDescriptionInput = newTimePanel.getMeetDescriptionInput();
+            eventDistDropdown = newTimePanel.getEventDistanceDropdown();
+            eventStrokeDropdown = newTimePanel.getEventStrokeDropdown();
+            eventTimeInput = newTimePanel.getEventTimeInput();
+            name = nameInput.getText();
+            swimmerGroup = (String) swimmerGroupDropdown.getSelectedItem();
+            age = swimmerAgeInput.getText();
+            meetName = meetDescriptionInput.getText();
+            event = eventDistDropdown.getSelectedItem() + " " + eventStrokeDropdown.getSelectedItem();
+            eventTime = eventTimeInput.getText();
+        } catch (NullPointerException e) { // print some kind of exception message
+        }
         return new Time(name, swimmerGroup, age, meetName, event, eventTime);
     }
 
@@ -240,7 +253,6 @@ public class BestTimeTrackerEditor extends JFrame {
         }
         spTable.setViewportView(table);
     }
-
 
     // MODIFIES: this
     // EFFECTS: given an audio file destination, plays audio file in window when called
