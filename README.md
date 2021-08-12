@@ -1,4 +1,4 @@
-# My Personal Project: BestTimeTracker
+ My Personal Project: BestTimeTracker
 
 ## Best Time Tracker for Swimming Application
 
@@ -25,6 +25,15 @@ swimmer's name
 
 In designing my application, it was important to ensure that the user input for time was consistent across all time 
 entries. In the eventTimeInSeconds() method in the Time class, to properly parse the time user input I compared each 
-input to make sure it matched the (mm:ss:ms) format. If not, a checked NumberFormatException was thrown. This exception 
-would then be caught in the addTimeButtonClicked method of the BestTimeTrackerEditor class, which would then play an 
+input to make sure it matched the (mm:ss:ms) format. If not, a NumberFormatException was thrown. This exception 
+is caught in the addTimeButtonClicked method of the BestTimeTrackerEditor class, which would then play an 
 audio notification and prompt the user to input the time again in the correct format.
+
+## Phase 4: Task 3
+
+No doubt, my project design is not perfect. There is a lot of coupling involved in trying to update the Time Database 
+JTable - this could be improved by implementing a bidirectional relationship between the time database and its 
+corresponding UI table. Also, the hierarchy of my UML diagram is extremely flat; the BestTimeTrackerEditor class does 
+not obey the Single Responsibility principle as I attempted to make it do more than just display different panels. I 
+could have created another class like a TimeActionListeners class that would only contain and evoke component Action 
+Listeners. This could even be further seperated into different class or interfaces depending on the action done.  
